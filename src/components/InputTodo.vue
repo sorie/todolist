@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import eventBus from '../EventBus'
+import Constant from '../Constant'
 
 export default {
   name : 'input-todo',
@@ -27,9 +27,14 @@ export default {
   },
   methods : {
     addTodo : function() {
-      eventBus.$emit('add-todo', this.todo);
-      this.todo = "";
+      this.$store.commit(Constant.ADD_TODO, { todo: this.todo })
+      this.todo = ""
     }
   }
 }
+/*
+InputTodo.vue 컴포넌트는 로컬 상태 데이터를 가지고 있다.
+왜냐하면 이 상태 데이턴는 다른 컴포넌트에서는 이용되지 않으며 관리해야 할 만큼 중요한 데이터가 아니기 때문.
+특정 컴포넌트에서만 필요로 하는 상태 데이터는 굳이 Vuex의 저장소를 이용할 필요가 없다. 
+*/
 </script>
