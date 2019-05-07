@@ -7,24 +7,26 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     todolist : [
-      { todo : "영화보기", done:true },
-      { todo : "주말 산책", done:false },
-      { todo : "ES6 학습", done:false },
-      { todo : "잠실야구장", done:true }
+      { id:1, todo : "영화보기", done:true },
+      { id:2, todo : "주말 산책", done:false },
+      { id:3, todo : "ES6 학습", done:false },
+      { id:4, todo : "잠실야구장", done:true }
     ]
   },
   // 상태를 변경할 때 필요한 정보(payload)
   mutations: {
     [Constant.ADD_TODO] : (state, payload) => {
       if (payload.todo !== "") {
-        state.todolist.push({ todo : payload.todo, done:false });
+        state.todolist.push({ id:new Date().getTime(), todo : payload.todo, done:false });
       }
     },
     [Constant.DONE_TOGGLE] : (state, payload) => {
-      state.todolist[payload.index].done = !state.todolist[payload.index].done;
+      var index = state.todolist.findIndex((item)=>item.id === payload.id);
+      state.todolist[index].done = !state.todolist[index].done;
     },
     [Constant.DELETE_TODO] : (state, payload) => {
-      state.todolist.splice(payload.index,1);
+      var index = state.todolist.findIndex((item)=>item.id === payload.id);
+      state.todolist.splice(index,1);
     }
   }
 })
