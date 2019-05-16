@@ -28,6 +28,20 @@ const store = new Vuex.Store({
       var index = state.todolist.findIndex((item)=>item.id === payload.id);
       state.todolist.splice(index,1);
     }
+  },
+  actions: {
+    [Constant.ADD_TODO] : (store, payload) => {
+      console.log("add todo", payload);
+      store.commit(Constant.ADD_TODO, payload);
+    },      
+    [Constant.DONE_TOGGLE] : (store, payload) => {
+      console.log("DONE_TOGGLE todo", payload);
+      store.commit(Constant.DONE_TOGGLE, payload);
+    },      
+    [Constant.DELETE_TODO] : (store, payload) => {
+      console.log("DELETE_TODO todo", payload);
+      store.commit(Constant.DELETE_TODO, payload);
+    }
   }
 })
 

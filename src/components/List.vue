@@ -10,7 +10,7 @@
 </template>
 <script>
 import Constant from '../Constant'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'List',
@@ -20,7 +20,7 @@ export default {
         if(done) return {checked:true}
         else return {checked:false}
       },
-      ...mapMutations([
+      ...mapActions([
         Constant.DELETE_TODO,
         Constant.DONE_TOGGLE
       ])
